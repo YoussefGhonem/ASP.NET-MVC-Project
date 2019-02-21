@@ -1,0 +1,98 @@
+﻿@model IEnumerable<Jop_Offers_Website.Models.ListUserOfJops>
+
+@{
+    ViewBag.Title = "IndexPuplisher";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>IndexPuplisher</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@foreach (var gr in Model)
+{
+<h1>@gr.JopTitle</h1>
+    <table class="table table-bordered table-hover" >
+        <tr>
+            <th>
+               User Name
+            </th>
+           
+            <th>
+                Message
+            </th>
+
+            <th>
+                Apply Date
+            </th>
+
+            
+        </tr>
+        @foreach (var item in gr.Items)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.user.UserName)
+                </td>
+              
+                <td>
+                    @Html.DisplayFor(modelItem => item.Msg)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplyDate)
+                </td>
+
+
+            </tr>
+        }
+
+    </table>
+}
+
+
+
+
+
+
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.user.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.jop.jopTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Msg)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.ApplyDate)
+        </th>
+
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.user.UserName)
+            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.jop.jopTitle)
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.Msg)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplyDate)
+            </td>
+
+
+        </tr>
+    }
+
+</table>*@

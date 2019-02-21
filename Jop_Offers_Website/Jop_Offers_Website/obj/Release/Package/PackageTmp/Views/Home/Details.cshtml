@@ -1,0 +1,58 @@
+﻿@model Jop_Offers_Website.Models.Jop
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<h3>information about this jop </h3>
+<div>
+    <h4></h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.CategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.CategoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.jopTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.jopTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.jopContent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.jopContent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.jopImg)
+        </dt>
+
+        <dd>
+            <img src="@Url.Content(Model.jopImg )" height="100" />
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        @Html.ActionLink("Apply", "Apply", new { jopid = Model.Id }, new { @class = "btn btn-default" }) |
+        @Html.ActionLink("Back to List", "Index")
+        
+    </div>
+    }
+</div>

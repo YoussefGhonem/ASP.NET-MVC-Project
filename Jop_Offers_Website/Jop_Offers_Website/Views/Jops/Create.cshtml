@@ -1,0 +1,75 @@
+﻿@model Jop_Offers_Website.Models.Jop
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+@using (Html.BeginForm("Create", "Jops", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <h4>Jop</h4>
+        <div class="alert alert-danger" id="div" style="display:none">
+            <span id="err">
+
+            </span>
+
+        </div>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.jopTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.jopTitle, new { htmlAttributes = new { @class = "form-control", id = "jopimg" } })
+                @Html.ValidationMessageFor(model => model.jopTitle, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.jopContent, htmlAttributes: new { @class = "control-label col-md-2"  } )
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.jopContent, new { htmlAttributes = new { @class = "form-control", id = "jopimg" } })
+                @Html.ValidationMessageFor(model => model.jopContent, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.jopImg, htmlAttributes: new { @class = "control-label col-md-2" })
+            <input type="file" name="file"  id = "jopimg"/>
+            @Html.ValidationMessageFor(model => model.jopImg, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CategoryId, "Category Type", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control", id = "jopimg" })
+                @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="save" class="btn btn-default" , id = "save"/>
+            </div>
+        </div>
+    </div>
+    @ViewBag.msg
+}
+    
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    $(function () {
+        $("#save").click(function () {
+            if ($("#jopimg").val() == "") {
+                $("#div").fadeIn();
+                $("#err").append("please Enter img");
+                return false;
+            }
+        });
+    });
+</script>

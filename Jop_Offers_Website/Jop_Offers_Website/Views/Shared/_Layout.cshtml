@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - WUZZUf</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("WUZZUf", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink(" Home", "Index", "Home", new { @class = "glyphicon glyphicon-home" })</li>
+
+                        <li>@Html.ActionLink(" About", "About", "Home", new { @class = "glyphicon glyphicon-globe" })</li>
+                        <li>@Html.ActionLink(" Contact", "Contact", "Home", new { @class = "glyphicon glyphicon-envelope" })</li>
+
+                    </ul>
+
+                    <div class="form-group navbar-form navbar-left">
+                        @using (Html.BeginForm("Search", "Home", FormMethod.Post))
+                        {
+                            <input name="search" id="search" class="form-control mr-sm-2" type="search"
+                                   placeholder="Search" aria-label="Search">
+                        }
+                    </div>
+
+                    @Html.Partial("_LoginPartial")
+
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </div>
+    </nav>
+
+
+
+
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("WUZZUf", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink(" Home", "Index", "Home", new { @class = "glyphicon glyphicon-home" })</li>
+
+                        <li>@Html.ActionLink(" About", " About", "Home", new { @class = "glyphicon glyphicon-globe" })</li>
+                        <li>@Html.ActionLink(" Contact", " Contact", "Home", new { @class = "glyphicon glyphicon-envelope" })</li>
+                        <li>@Html.ActionLink(" OfferCategories", "Contact", "Home", new { @class = "glyphicon glyphicon-list-alt" })</li>
+
+                        @using (Html.BeginForm("Search", "Home", FormMethod.Post))
+                        {
+                            <input name="search" id="search" class="form-control mr-sm-2" type="search"
+                                   placeholder="Search" aria-label="Search">
+
+                        }
+
+
+                    </ul>
+
+
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </div>*@
+
+
+
+
+
+
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+
+
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

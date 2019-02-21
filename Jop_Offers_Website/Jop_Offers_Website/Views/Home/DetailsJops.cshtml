@@ -1,0 +1,39 @@
+﻿@model Jop_Offers_Website.Models.ApplyForJop
+
+@{
+    ViewBag.Title = "DetailsJops";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DetailsJops</h2>
+
+<div>
+    <h4>ApplyForJop</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Msg)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Msg)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplyDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplyDate)
+        </dd>
+
+      
+
+     
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "GetJops")
+</p>

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Jop_Offers_Website.Models.Category>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>WUZZUf</h1>
+    <p class="lead">
+        this the website importance for any one needs to jop or
+        work in international company Join Us Now and mke email and we will send you email.
+    </p>
+    <p><a href="#" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+   
+
+</div>
+
+
+@foreach (var item in Model)
+{
+    <h1>@Html.DisplayFor(i => item.CategoryName)</h1>
+    <h5>@Html.DisplayFor(i => item.CategoryDescription)</h5>
+  
+    <div class="row">
+        @foreach (var sitem in item.Jop)
+        {
+            <div class="col-md-4">
+                <div class="thumbnail">
+                    <a href="#">
+                        <img src="@Url.Content(@sitem.jopImg )" style="width:100%"/>
+                        <div class="display-field">
+                        </div>
+                        <div class="caption">
+                            <h2>@Html.DisplayFor(i => sitem.jopTitle)</h2>
+                            <p>@Html.DisplayFor(i => sitem.jopContent).</p>
+                            <p>                               
+                                @Html.ActionLink("Details", "Details", new { jopid = sitem.Id }, new {@class= "btn btn-default"})
+                            </p>
+
+                        </div>
+                    </a>
+                </div>
+            </div>
+        }
+
+    </div>
+
+
+}
+
+

@@ -1,0 +1,97 @@
+﻿@model Jop_Offers_Website.Models.Jop
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Edit", "Jops", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Jop</h4>
+    <div class="alert alert-danger" id="div" style="display:none">
+        <span id="err">
+
+        </span>
+    </div>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.jopImg)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.jopTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.jopTitle, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.jopTitle, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.jopContent, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.jopContent, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.jopContent, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.jopImg, htmlAttributes: new { @class = "control-label col-md-2" })
+        <input type="file" name="file" id="img" />
+        @Html.ValidationMessageFor(model => model.jopImg, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CategoryId, "CategoryId", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" id="save" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    $(function () {
+        $("#save").click(function () {
+            //Check the extension
+            if ($("#img").val() != "")
+            {
+                var name = document.getElementById("img").value;
+                var ext = name.substr(name.lastIndexOf('.') + 1);
+                var data = ["jpg", "png"];
+                if ($.inArray(ext, data) == -1)
+                {
+                    $("#div").fadeIn();
+                    $("#err").append("please make sure about your extension ");
+                    return false;
+                }
+                var size = document.getElementById("img").files[0].size / 1024 / 1024;
+                if (size > 2) {
+                    $("#div").fadeIn();
+                    $("#err").append("please make sure about your size must Be less than 2MG ");
+                    return false;
+                }
+            }
+
+
+        });
+
+
+    });
+
+</script>

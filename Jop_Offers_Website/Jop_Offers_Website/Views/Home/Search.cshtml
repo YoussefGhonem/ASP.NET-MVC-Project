@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Jop_Offers_Website.Models.Jop>
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="margin-top:80px">Search</h2>
+
+
+    <div class="row">
+        @foreach (var sitem in Model)
+        {
+            <div class="col-md-4">
+                <div class="thumbnail">
+                    <a href="#">
+                        <img src="@Url.Content(@sitem.jopImg )" style="width:100%" />
+                        <div class="display-field">
+                        </div>
+                        <div class="caption">
+                            <h2>@Html.DisplayFor(i => sitem.jopTitle)</h2>
+                            <p>@Html.DisplayFor(i => sitem.jopContent).</p>
+                            <p>
+                                @Html.ActionLink("Details", "Details", new { jopid = sitem.Id }, new { @class = "btn btn-default" })
+                            </p>
+
+                        </div>
+                    </a>
+                </div>
+            </div>
+        }
+
+    </div>
+
+

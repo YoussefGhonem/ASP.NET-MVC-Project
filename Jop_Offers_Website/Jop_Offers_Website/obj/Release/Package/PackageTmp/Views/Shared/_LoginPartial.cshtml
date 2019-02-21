@@ -1,0 +1,57 @@
+﻿@using Microsoft.AspNet.Identity
+@using Jop_Offers_Website.Models
+
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        //To  protected from CSRF Attack
+        var db = new ApplicationDbContext();
+        var userid = User.Identity.GetUserId();
+        var currentuser = db.Users.Where(a => a.Id == userid).SingleOrDefault();
+        @Html.AntiForgeryToken()
+
+<ul class="nav navbar-nav navbar-right ">
+    <li>
+        @Html.ActionLink("Hello " +currentuser.UserName + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+    </li>
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            @if (currentuser.UserType == "prof")
+            {
+                <li><a href="#">puplisher</a></li>
+                <li><a href="~/Home/IndexPuplisher">Your jops puplisher</a></li>
+                <li><a href="~/Jops/Create">Add New Jops</a></li>
+                <li><a href="#">Settings</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+            }
+            else
+            {
+                <li><a href="#">user</a></li>
+                <li><a href="~/Home/GetJops">Jobs you have applied to </a></li>
+                <li><a href="#">Settings</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+            }
+
+        </ul>
+    </li>
+</ul>
+
+        @*<ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>*@
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

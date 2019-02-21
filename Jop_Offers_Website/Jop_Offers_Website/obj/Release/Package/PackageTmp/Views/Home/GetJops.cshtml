@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Jop_Offers_Website.Models.ApplyForJop>
+
+@{
+    ViewBag.Title = "GetJops";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>GetJops</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Msg)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplyDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.jop.jopTitle)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Msg)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApplyDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.jop.jopTitle)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditeJop", new { id = item.Id }) |
+            @Html.ActionLink("Details", "DetailsJops", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "DeleteJop", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>
